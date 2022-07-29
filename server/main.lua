@@ -34,6 +34,7 @@ RegisterNetEvent('qb-jewellery:server:vitrineReward', function()
         local item = math.random(1, #Config.VitrineRewards)
         local amount = math.random(Config.VitrineRewards[item]["amount"]["min"], Config.VitrineRewards[item]["amount"]["max"])
         if Player.Functions.AddItem(Config.VitrineRewards[item]["item"], amount) then
+            TriggerEvent('logsystem:log', Player.source, "Robbed Jewerlly Store ("..tostring(Config.VitrineRewards[item]["item"])..")("..tostring(amount)..")") --modified
             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.VitrineRewards[item]["item"]], 'add')
         else
             TriggerClientEvent('QBCore:Notify', src, Lang:t('error.to_much'), 'error')
@@ -41,6 +42,7 @@ RegisterNetEvent('qb-jewellery:server:vitrineReward', function()
     else
         local amount = math.random(2, 4)
         if Player.Functions.AddItem("10kgoldchain", amount) then
+            TriggerEvent('logsystem:log', Player.source, "Robbed Jewerlly Store ("..tostring("10kgoldchain")..")("..tostring(amount)..")") --modified
             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["10kgoldchain"], 'add')
         else
             TriggerClientEvent('QBCore:Notify', src, Lang:t('error.to_much'), 'error')
